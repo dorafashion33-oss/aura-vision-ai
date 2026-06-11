@@ -151,7 +151,7 @@ function Hero() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
           className="relative"
         >
           <div className="absolute -inset-8 bg-[radial-gradient(circle,oklch(0.65_0.28_305/0.35),transparent_70%)] blur-2xl -z-10" />
