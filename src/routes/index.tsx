@@ -74,9 +74,9 @@ function Navbar() {
           <button className="hidden sm:inline-flex h-9 px-4 rounded-lg text-sm font-medium border border-white/10 hover:bg-white/5 transition">
             Log in
           </button>
-          <button className="inline-flex items-center h-9 px-4 rounded-lg text-sm font-medium btn-primary-glow">
+          <Link to="/create" className="inline-flex items-center h-9 px-4 rounded-lg text-sm font-medium btn-primary-glow">
             Get Started
-          </button>
+          </Link>
         </div>
       </div>
     </header>
