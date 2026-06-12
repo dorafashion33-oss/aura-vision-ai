@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
   Play,
@@ -74,9 +74,9 @@ function Navbar() {
           <button className="hidden sm:inline-flex h-9 px-4 rounded-lg text-sm font-medium border border-white/10 hover:bg-white/5 transition">
             Log in
           </button>
-          <button className="inline-flex items-center h-9 px-4 rounded-lg text-sm font-medium btn-primary-glow">
+          <Link to="/create" className="inline-flex items-center h-9 px-4 rounded-lg text-sm font-medium btn-primary-glow">
             Get Started
-          </button>
+          </Link>
         </div>
       </div>
     </header>
@@ -106,9 +106,9 @@ function Hero() {
             No editing skills. No limits. Just imagination.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <button className="inline-flex items-center gap-2 h-12 px-6 rounded-xl text-sm font-semibold btn-primary-glow">
+            <Link to="/create" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl text-sm font-semibold btn-primary-glow">
               Create Video Now <ArrowRight className="h-4 w-4" />
-            </button>
+            </Link>
             <button className="inline-flex items-center gap-2 h-12 px-6 rounded-xl text-sm font-semibold border border-white/10 hover:bg-white/5 transition">
               <Play className="h-4 w-4" /> Watch Demo
             </button>
