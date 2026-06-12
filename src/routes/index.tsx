@@ -74,7 +74,7 @@ function Navbar() {
           <button className="hidden sm:inline-flex h-9 px-4 rounded-lg text-sm font-medium border border-white/10 hover:bg-white/5 transition">
             Log in
           </button>
-          <Link to="/create" className="inline-flex items-center h-9 px-4 rounded-lg text-sm font-medium btn-primary-glow">
+          <Link to="/get-started" className="inline-flex items-center h-9 px-4 rounded-lg text-sm font-medium btn-primary-glow">
             Get Started
           </Link>
         </div>
@@ -109,9 +109,9 @@ function Hero() {
             <Link to="/create" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl text-sm font-semibold btn-primary-glow">
               Create Video Now <ArrowRight className="h-4 w-4" />
             </Link>
-            <button className="inline-flex items-center gap-2 h-12 px-6 rounded-xl text-sm font-semibold border border-white/10 hover:bg-white/5 transition">
+            <Link to="/demo" className="inline-flex items-center gap-2 h-12 px-6 rounded-xl text-sm font-semibold border border-white/10 hover:bg-white/5 transition">
               <Play className="h-4 w-4" /> Watch Demo
-            </button>
+            </Link>
           </div>
           <div className="mt-10">
             <p className="text-[11px] font-semibold tracking-[0.18em] text-muted-foreground">
