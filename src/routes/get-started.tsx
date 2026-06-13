@@ -30,6 +30,41 @@ function GoogleIcon() {
 }
 
 function AuthCard() {
+  const navigate = useNavigate();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  async function handleGoogle() {
+    setErr(null);
+    try {
+      const { lovable } = await import("@/integrations/lovable");
+      const r = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + "/create" });
+      if (r.error) setErr(String(r.error.message ?? r.error));
+      else if (!r.redirected) navigate({ to: "/create" });
+    } catch (e: any) { setErr(e?.message ?? "Sign-in failed"); }
+  }
+
+  async function handleEmail() {
+    setErr(null); setLoading(true);
+    try {
+      const { supabase } = await import("@/integrations/supabase/client");
+      const { error } = await supabase.auth.signUp({
+        email, password,
+        options: { emailRedirectTo: window.location.origin + "/create", data: { full_name: name } },
+      });
+      if (error) {
+        // try sign-in if already exists
+        const { error: e2 } = await supabase.auth.signInWithPassword({ email, password });
+        if (e2) { setErr(error.message); return; }
+      }
+      navigate({ to: "/create" });
+    } catch (e: any) { setErr(e?.message ?? "Sign-up failed"); }
+    finally { setLoading(false); }
+  }
+
   return (
     <div className="rounded-3xl glass-card border-primary/30 p-6 sm:p-8 shadow-glow">
       <h2 className="text-2xl sm:text-3xl font-bold text-center leading-tight">
@@ -40,16 +75,8 @@ function AuthCard() {
       </p>
 
       <div className="mt-6 space-y-2.5">
-        <button className="w-full h-12 rounded-xl glass-card glow-border flex items-center justify-center gap-3 text-sm font-medium">
+        <button onClick={handleGoogle} className="w-full h-12 rounded-xl glass-card glow-border flex items-center justify-center gap-3 text-sm font-medium hover:bg-white/5">
           <GoogleIcon /> Continue with Google
-        </button>
-        <button className="w-full h-12 rounded-xl glass-card glow-border flex items-center justify-center gap-3 text-sm font-medium">
-          <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M17.05 12.5a4.4 4.4 0 012.1-3.7 4.5 4.5 0 00-3.6-1.9c-1.5-.2-3 .9-3.8.9-.8 0-2-.9-3.3-.9-1.7 0-3.3 1-4.2 2.5-1.8 3.1-.5 7.7 1.2 10.2.9 1.2 1.9 2.6 3.2 2.5 1.3-.1 1.8-.8 3.3-.8 1.5 0 2 .8 3.3.8 1.4 0 2.3-1.2 3.1-2.5a11 11 0 001.4-2.9 4.3 4.3 0 01-2.7-4z"/><path d="M14.6 4.7a4.2 4.2 0 001-3.2 4.4 4.4 0 00-2.8 1.5 4 4 0 00-1 3.1 3.6 3.6 0 002.8-1.4z"/></svg>
-          Continue with Apple
-        </button>
-        <button className="w-full h-12 rounded-xl glass-card glow-border flex items-center justify-center gap-3 text-sm font-medium">
-          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="#5865F2"><path d="M20.3 4.4A19.8 19.8 0 0015.4 3l-.3.5a18 18 0 00-6.2 0L8.6 3a19.8 19.8 0 00-4.9 1.4A20.2 20.2 0 00.4 16.3a20 20 0 006.1 3l.5-.7a14 14 0 01-2.2-1l.5-.4a14.1 14.1 0 0012.2 0l.5.4a13.6 13.6 0 01-2.2 1l.5.7a20 20 0 006.1-3 20.2 20.2 0 00-3.1-12zM8.4 14.4c-1.2 0-2.2-1.1-2.2-2.5 0-1.3 1-2.5 2.2-2.5s2.2 1.2 2.2 2.5c0 1.4-1 2.5-2.2 2.5zm7.2 0c-1.2 0-2.2-1.1-2.2-2.5 0-1.3 1-2.5 2.2-2.5s2.2 1.2 2.2 2.5c0 1.4-1 2.5-2.2 2.5z"/></svg>
-          Continue with Discord
         </button>
       </div>
 
@@ -60,13 +87,15 @@ function AuthCard() {
       </div>
 
       <div className="space-y-3">
-        <Field icon={User} placeholder="Full Name" />
-        <Field icon={Mail} placeholder="Email Address" type="email" />
-        <Field icon={Lock} placeholder="Password" type="password" trailing={<Eye className="h-4 w-4 text-muted-foreground" />} />
+        <Field icon={User} placeholder="Full Name" value={name} onChange={setName} />
+        <Field icon={Mail} placeholder="Email Address" type="email" value={email} onChange={setEmail} />
+        <Field icon={Lock} placeholder="Password" type="password" value={password} onChange={setPassword} trailing={<Eye className="h-4 w-4 text-muted-foreground" />} />
       </div>
 
-      <button className="mt-5 w-full h-12 rounded-xl btn-primary-glow text-sm font-bold inline-flex items-center justify-center gap-2">
-        <Sparkles className="h-4 w-4" /> Enter AI Studio
+      {err && <div className="mt-3 text-xs text-red-400 bg-red-500/10 border border-red-500/30 rounded-lg p-2">{err}</div>}
+
+      <button onClick={handleEmail} disabled={loading || !email || !password} className="mt-5 w-full h-12 rounded-xl btn-primary-glow text-sm font-bold inline-flex items-center justify-center gap-2 disabled:opacity-50">
+        <Sparkles className="h-4 w-4" /> {loading ? "Creating account…" : "Enter AI Studio"}
       </button>
 
       <p className="mt-4 text-center text-[11px] text-muted-foreground">
@@ -81,13 +110,15 @@ function AuthCard() {
   );
 }
 
-function Field({ icon: Icon, placeholder, type = "text", trailing }: { icon: any; placeholder: string; type?: string; trailing?: React.ReactNode }) {
+function Field({ icon: Icon, placeholder, type = "text", trailing, value, onChange }: { icon: any; placeholder: string; type?: string; trailing?: React.ReactNode; value?: string; onChange?: (v: string) => void }) {
   return (
     <div className="relative">
       <Icon className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
       <input
         type={type}
         placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange?.(e.target.value)}
         className="w-full h-12 pl-10 pr-10 rounded-xl glass-card text-sm placeholder:text-muted-foreground focus:outline-none focus:border-primary/40"
       />
       {trailing && <div className="absolute right-3 top-1/2 -translate-y-1/2">{trailing}</div>}

@@ -9,14 +9,73 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as UpgradeRouteImport } from './routes/upgrade'
+import { Route as ToolsRouteImport } from './routes/tools'
+import { Route as TemplatesRouteImport } from './routes/templates'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as MyProjectsRouteImport } from './routes/my-projects'
 import { Route as GetStartedRouteImport } from './routes/get-started'
+import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as DemoRouteImport } from './routes/demo'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as CreditsRouteImport } from './routes/credits'
 import { Route as CreateRouteImport } from './routes/create'
+import { Route as CommunityRouteImport } from './routes/community'
+import { Route as BlogRouteImport } from './routes/blog'
+import { Route as AiEffectsRouteImport } from './routes/ai-effects'
 import { Route as IndexRouteImport } from './routes/index'
 
+const UpgradeRoute = UpgradeRouteImport.update({
+  id: '/upgrade',
+  path: '/upgrade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsRoute = ToolsRouteImport.update({
+  id: '/tools',
+  path: '/tools',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TemplatesRoute = TemplatesRouteImport.update({
+  id: '/templates',
+  path: '/templates',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyProjectsRoute = MyProjectsRouteImport.update({
+  id: '/my-projects',
+  path: '/my-projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GetStartedRoute = GetStartedRouteImport.update({
   id: '/get-started',
   path: '/get-started',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreRoute = ExploreRouteImport.update({
+  id: '/explore',
+  path: '/explore',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoRoute = DemoRouteImport.update({
@@ -24,9 +83,34 @@ const DemoRoute = DemoRouteImport.update({
   path: '/demo',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CreditsRoute = CreditsRouteImport.update({
+  id: '/credits',
+  path: '/credits',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CreateRoute = CreateRouteImport.update({
   id: '/create',
   path: '/create',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiEffectsRoute = AiEffectsRouteImport.update({
+  id: '/ai-effects',
+  path: '/ai-effects',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,45 +121,219 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-effects': typeof AiEffectsRoute
+  '/blog': typeof BlogRoute
+  '/community': typeof CommunityRoute
   '/create': typeof CreateRoute
+  '/credits': typeof CreditsRoute
+  '/dashboard': typeof DashboardRoute
   '/demo': typeof DemoRoute
+  '/explore': typeof ExploreRoute
   '/get-started': typeof GetStartedRoute
+  '/my-projects': typeof MyProjectsRoute
+  '/notifications': typeof NotificationsRoute
+  '/pricing': typeof PricingRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/templates': typeof TemplatesRoute
+  '/tools': typeof ToolsRoute
+  '/upgrade': typeof UpgradeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-effects': typeof AiEffectsRoute
+  '/blog': typeof BlogRoute
+  '/community': typeof CommunityRoute
   '/create': typeof CreateRoute
+  '/credits': typeof CreditsRoute
+  '/dashboard': typeof DashboardRoute
   '/demo': typeof DemoRoute
+  '/explore': typeof ExploreRoute
   '/get-started': typeof GetStartedRoute
+  '/my-projects': typeof MyProjectsRoute
+  '/notifications': typeof NotificationsRoute
+  '/pricing': typeof PricingRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/templates': typeof TemplatesRoute
+  '/tools': typeof ToolsRoute
+  '/upgrade': typeof UpgradeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-effects': typeof AiEffectsRoute
+  '/blog': typeof BlogRoute
+  '/community': typeof CommunityRoute
   '/create': typeof CreateRoute
+  '/credits': typeof CreditsRoute
+  '/dashboard': typeof DashboardRoute
   '/demo': typeof DemoRoute
+  '/explore': typeof ExploreRoute
   '/get-started': typeof GetStartedRoute
+  '/my-projects': typeof MyProjectsRoute
+  '/notifications': typeof NotificationsRoute
+  '/pricing': typeof PricingRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
+  '/templates': typeof TemplatesRoute
+  '/tools': typeof ToolsRoute
+  '/upgrade': typeof UpgradeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/create' | '/demo' | '/get-started'
+  fullPaths:
+    | '/'
+    | '/ai-effects'
+    | '/blog'
+    | '/community'
+    | '/create'
+    | '/credits'
+    | '/dashboard'
+    | '/demo'
+    | '/explore'
+    | '/get-started'
+    | '/my-projects'
+    | '/notifications'
+    | '/pricing'
+    | '/profile'
+    | '/settings'
+    | '/templates'
+    | '/tools'
+    | '/upgrade'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/create' | '/demo' | '/get-started'
-  id: '__root__' | '/' | '/create' | '/demo' | '/get-started'
+  to:
+    | '/'
+    | '/ai-effects'
+    | '/blog'
+    | '/community'
+    | '/create'
+    | '/credits'
+    | '/dashboard'
+    | '/demo'
+    | '/explore'
+    | '/get-started'
+    | '/my-projects'
+    | '/notifications'
+    | '/pricing'
+    | '/profile'
+    | '/settings'
+    | '/templates'
+    | '/tools'
+    | '/upgrade'
+  id:
+    | '__root__'
+    | '/'
+    | '/ai-effects'
+    | '/blog'
+    | '/community'
+    | '/create'
+    | '/credits'
+    | '/dashboard'
+    | '/demo'
+    | '/explore'
+    | '/get-started'
+    | '/my-projects'
+    | '/notifications'
+    | '/pricing'
+    | '/profile'
+    | '/settings'
+    | '/templates'
+    | '/tools'
+    | '/upgrade'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiEffectsRoute: typeof AiEffectsRoute
+  BlogRoute: typeof BlogRoute
+  CommunityRoute: typeof CommunityRoute
   CreateRoute: typeof CreateRoute
+  CreditsRoute: typeof CreditsRoute
+  DashboardRoute: typeof DashboardRoute
   DemoRoute: typeof DemoRoute
+  ExploreRoute: typeof ExploreRoute
   GetStartedRoute: typeof GetStartedRoute
+  MyProjectsRoute: typeof MyProjectsRoute
+  NotificationsRoute: typeof NotificationsRoute
+  PricingRoute: typeof PricingRoute
+  ProfileRoute: typeof ProfileRoute
+  SettingsRoute: typeof SettingsRoute
+  TemplatesRoute: typeof TemplatesRoute
+  ToolsRoute: typeof ToolsRoute
+  UpgradeRoute: typeof UpgradeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/upgrade': {
+      id: '/upgrade'
+      path: '/upgrade'
+      fullPath: '/upgrade'
+      preLoaderRoute: typeof UpgradeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools': {
+      id: '/tools'
+      path: '/tools'
+      fullPath: '/tools'
+      preLoaderRoute: typeof ToolsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/templates': {
+      id: '/templates'
+      path: '/templates'
+      fullPath: '/templates'
+      preLoaderRoute: typeof TemplatesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/my-projects': {
+      id: '/my-projects'
+      path: '/my-projects'
+      fullPath: '/my-projects'
+      preLoaderRoute: typeof MyProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/get-started': {
       id: '/get-started'
       path: '/get-started'
       fullPath: '/get-started'
       preLoaderRoute: typeof GetStartedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo': {
@@ -85,11 +343,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/credits': {
+      id: '/credits'
+      path: '/credits'
+      fullPath: '/credits'
+      preLoaderRoute: typeof CreditsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/create': {
       id: '/create'
       path: '/create'
       fullPath: '/create'
       preLoaderRoute: typeof CreateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-effects': {
+      id: '/ai-effects'
+      path: '/ai-effects'
+      fullPath: '/ai-effects'
+      preLoaderRoute: typeof AiEffectsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -104,20 +397,24 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiEffectsRoute: AiEffectsRoute,
+  BlogRoute: BlogRoute,
+  CommunityRoute: CommunityRoute,
   CreateRoute: CreateRoute,
+  CreditsRoute: CreditsRoute,
+  DashboardRoute: DashboardRoute,
   DemoRoute: DemoRoute,
+  ExploreRoute: ExploreRoute,
   GetStartedRoute: GetStartedRoute,
+  MyProjectsRoute: MyProjectsRoute,
+  NotificationsRoute: NotificationsRoute,
+  PricingRoute: PricingRoute,
+  ProfileRoute: ProfileRoute,
+  SettingsRoute: SettingsRoute,
+  TemplatesRoute: TemplatesRoute,
+  ToolsRoute: ToolsRoute,
+  UpgradeRoute: UpgradeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
